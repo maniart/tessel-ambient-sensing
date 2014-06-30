@@ -1,0 +1,31 @@
+<html>
+<head>
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		
+			var getData = function() {
+				$.get( "./api/get", function( data ) {
+					console.log('$.get says: ', data);
+					//$( ".result" ).html( data );
+
+				});	
+			};
+
+			var pull = function(interval) {
+				window.setTimeout(function repeatPulling() {
+					getData();
+					window.setTimeout(repeatPulling, interval);
+				}, interval);
+			};
+
+			pull(2000);
+
+		});
+	</script>
+	<title>Tessel test yo</title>
+</head>
+<body>
+	<div class="results"></div>
+</body>
+</html>
